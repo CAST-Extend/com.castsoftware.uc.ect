@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>CAST Enlighten Application Configuration</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+<script type="text/javascript" th:src="@{js/jquery-1.10.2.js}" />
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/jquery.selectlistactions.js}"></script>
+
+<!-- script type="text/javascript" src="js/main.js"></script>  -->
+</head>
+<body class="texture animated" style="padding: 0; margin: 0;">
+	<div style="opacity: 1; margin-left: 50px;">
+		<h1>CAST Enlighten Application Configuration</h1>
+	</div>
+
+	<div class="row">
+	<form action="#" th:action="@{/addAppls}" method="post"
+		th:object="${formData}" id="mainForm">
+		<div class="col-md-2">&nbsp;</div>
+		<div class="col-md-3 border">
+			<h3>Select an application:</h3>
+			<div class="form-group blu-margin">
+				<select class="form-control" style="height: 400px;"
+					multiple="multiple" id='lstBox1' name='lstBox1'
+					th:field="${formData.applList}">
+					<option th:each="al : ${formData.applList}" th:value="${al.name}"
+						th:text="${al.name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<div style="height: 180px">&nbsp;</div>
+			<div class="subject-info-arrows text-center vertical-center">
+				<input type="button" id="btnRight" value="&gt;"
+					class="btn btn-default" /><br /> <input type="button"
+					id="btnLeft" value="&lt;" class="btn btn-default" /><br /> <input
+					type="button" id="btnAllLeft" value="&lt;&lt;"
+					class="btn btn-default" />
+			</div>
+		</div>
+		<div class="col-md-3">
+			<h3>&nbsp;</h3>
+			<div class="form-group blu-margin">
+				<select class="form-control" id="lstBox2" name="lstBox2"
+					style="height: 400px;" multiple="multiple"
+					th:field="${formData.configList}">
+					<option th:each="al : ${formData.configList}" th:value="${al}"
+						th:text="${al}"></option>
+				</select> <input type="submit" class="btn btn-primary" value="Create Profile" />
+			</div>
+		</div>
+	</form>
+    <form th:action="@{/logout}" method="post">
+        <input class="btn btn-primary" type="submit" value="Sign Out"/>
+    </form>
+	</div>
+	<div class="row">
+		<div class="alert alert-danger text-center" th:if="${errorMsg}"><h3  th:text="${errorMsg}" /></div>
+		<div class="alert alert-success text-center" th:if="${goodMsg}"><h3  th:text="${goodMsg}" /></div>
+	</div>
+
+	<script th:inline="javascript">
+	
+        $('#btnRight').click(function (e) {
+            $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
+            $('select').selectedIndex = 1;
+            e.preventDefault();
+        });
+        
+        $('#btnLeft').click(function (e) {
+            $('select').moveToListAndDelete('#lstBox2', '#lstBox1');
+            e.preventDefault();
+        });
+	
+        $('#btnAllLeft').click(function (e) {
+            $('select').moveAllToListAndDelete('#lstBox2', '#lstBox1');
+            e.preventDefault();
+        });
+                
+		$('#mainForm').submit(function( event ) {
+			var configOpts = $('select#lstBox2 option')
+			if (configOpts.length == 0) {
+            	e.preventDefault();
+            	return  false;
+			} else {			
+			    $('select#lstBox1 option').attr("selected","selected");
+			    $('select#lstBox2 option').attr("selected","selected");
+		    }
+		});		
+		
+	</script>
+
+</body>
+</html>

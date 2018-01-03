@@ -1,0 +1,28 @@
+AAD:
+  url: http://demoserver:8090/CAST-AAD/rest/
+  userName: cast
+  password: cast
+
+ldap:
+  domain: corp.castsoftware.com
+  url: ldaps://lex2.corp.castsoftware.com:636
+
+enlighten: 
+  server: NKALAP
+  port: 2280
+  user: operator
+  password: sCRYPTED:CAA7599F0B535A 
+  version: 8.1 
+  profileBaseFolder: C:\ProgramData\Application Data\CAST\CAST\8.2
+
+server:
+  port: 8443
+  ssl:
+    key-store: C:\CASTMS\keystore\keystore.jks
+    key-store-password: mdSi!4ty
+    key-password: mdSi!4ty
+    trust-store: C:\CASTMS\keystore\keystore.jks
+    trust-store-password: mdSi!4ty
+
+#logging.level.org.springframework.web: DEBUG
+logging.level.org.springframework.security: DEBUG
