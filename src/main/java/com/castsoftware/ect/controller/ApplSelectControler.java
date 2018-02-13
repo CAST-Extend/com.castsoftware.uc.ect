@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -50,7 +51,7 @@ public class ApplSelectControler {
 			form.setApplList(new ArrayList());
 			model.addAttribute(ERROR_MSG, ex.getMessage());
 		}
-		form.setConfigList(new ArrayList());
+		form.setConfigList(new String[0]);
 		model.addAttribute("formData", form);
 
 		return "frame";
@@ -58,7 +59,9 @@ public class ApplSelectControler {
 
 	@RequestMapping(value = "/addAppls", method = RequestMethod.POST)
 	public String addAppls(@ModelAttribute ApplForm form, Model model) {
-		ArrayList<String> configList = form.getConfigList();
+//		ArrayList<String> configList = form.getConfigList();
+		
+		String[] configList = form.getConfigList();
 		try {
 			ArrayList<AADApplication> applList = applSelect();
 
@@ -98,7 +101,7 @@ public class ApplSelectControler {
 			model.addAttribute("formData", form);
 			log.error("Error writing to enlighten profile file", e);
 		}
-		return "frame";
+		return frame(model);
 	}
 
 	private String createApplProfile(AADApplication appl) {
@@ -169,9 +172,9 @@ public class ApplSelectControler {
 			List<AADApplication> appls = restAAD.getApplications(portalName);
 
 			for (AADApplication aa : appls) {
-				if (aa.getAdgVersion().contains(version)) {
+//				if (aa.getAdgVersion().contains(version)) {
 					applList.add(aa);
-				}
+//				}
 
 				// //is the application already on the list?
 				// for (AADApplication bb: applList)

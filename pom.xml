@@ -105,7 +105,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.castsoftware.enlighten.Application</mainClass>
+							<mainClass>com.castsoftware.ect.Application</mainClass>
 							<addDefaultImplementationEntries>
 								true
 							</addDefaultImplementationEntries>
