@@ -30,7 +30,7 @@ import com.castsoftware.ect.model.ApplForm;
 
 @Controller
 public class ApplSelectControler {
-	private static final Logger log = LoggerFactory.getLogger(ApplSelectControler.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ApplSelectControler.class);
 
 	private final String ERROR_MSG = "errorMsg";
 	private final String GOOD_MSG = "goodMsg";
@@ -92,14 +92,14 @@ public class ApplSelectControler {
 
 				} catch (IOException e) {
 					model.addAttribute(ERROR_MSG, e.getMessage());
-					log.error("Error writing to enlighten profile file", e);
+					LOG.error("Error writing to enlighten profile file", e);
 				}
 			}
 		} catch (Exception e) {
 			model.addAttribute(ERROR_MSG, e.getMessage());
 			form.setApplList(new ArrayList());
 			model.addAttribute("formData", form);
-			log.error("Error writing to enlighten profile file", e);
+			LOG.error("Error writing to enlighten profile file", e);
 		}
 		return frame(model);
 	}

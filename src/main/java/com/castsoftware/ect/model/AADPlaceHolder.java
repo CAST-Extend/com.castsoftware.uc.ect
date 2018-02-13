@@ -1,9 +1,14 @@
 package com.castsoftware.ect.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AADPlaceHolder {
+	private static final Logger LOG = LoggerFactory.getLogger(AADPortal.class);
+
 	private String href;
 	private String name;
 

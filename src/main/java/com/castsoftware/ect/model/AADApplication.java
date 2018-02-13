@@ -2,6 +2,8 @@ package com.castsoftware.ect.model;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AADApplication {
+	private static final Logger LOG = LoggerFactory.getLogger(AADApplication.class);
+
 	private String href;
 	private String name;
 	private List <String> technologies;

@@ -20,7 +20,7 @@ import com.castsoftware.ect.model.AADSystem;
 
 @Controller
 public class AADController {
-	private static final Logger log = LoggerFactory.getLogger(AADController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AADController.class);
 
 	@Autowired
 	AADRestConfig restConfig;
@@ -28,7 +28,7 @@ public class AADController {
 	public List<AADPortal> getPortals()
 	{
 		String url = String.format("%s", restConfig.getBaseURL());
-		log.debug(url);
+		LOG.debug(url);
 
 		ResponseEntity<List<AADPortal>> applResponse = restConfig.getRestTemplate().exchange(url,
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<AADPortal>>() {
@@ -40,7 +40,7 @@ public class AADController {
 	public AADSystem getSystem(String portal)
 	{
 		String url = String.format("%s%s", restConfig.getBaseURL(), portal);
-		log.debug(url);
+		LOG.debug(url);
 
 		ResponseEntity<AADSystem> applResponse = restConfig.getRestTemplate().exchange(url,
 				HttpMethod.GET, null, new ParameterizedTypeReference<AADSystem>() {
@@ -52,7 +52,7 @@ public class AADController {
 	public List<AADSnapshot> getSnapshots(String portal)
 	{
 		String url = String.format("%s%s/configuration/snapshots", restConfig.getBaseURL(), portal);
-		log.debug(url);
+		LOG.debug(url);
 
 		ResponseEntity<List<AADSnapshot>> applResponse = restConfig.getRestTemplate().exchange(url,
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<AADSnapshot>>() {
@@ -64,7 +64,7 @@ public class AADController {
 	public List<AADApplication> getApplications(String portal)
 	{
 		String url = String.format("%s%s/applications", restConfig.getBaseURL(), portal);
-		log.debug(url);
+		LOG.debug(url);
 
 		ResponseEntity<List<AADApplication>> applResponse = restConfig.getRestTemplate().exchange(url,
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<AADApplication>>() {
