@@ -2,7 +2,14 @@ package com.castsoftware.ect.model;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.castsoftware.ect.HttpComponentsClientHttpRequestFactoryBasicAuth;
+
 public class ApplForm {
+	private static final Logger LOG = LoggerFactory.getLogger(HttpComponentsClientHttpRequestFactoryBasicAuth.class);
+	
 	private ArrayList<AADApplication> applList;
 	private String[] configList;
 
