@@ -32,8 +32,8 @@ import com.castsoftware.ect.model.ApplForm;
 public class ApplSelectControler {
 	private static final Logger LOG = LoggerFactory.getLogger(ApplSelectControler.class);
 
-	private final String ERROR_MSG = "errorMsg";
-	private final String GOOD_MSG = "goodMsg";
+	private final static String ERROR_MSG = "errorMsg";
+	private final static String GOOD_MSG = "goodMsg";
 
 	@Autowired
 	private AADController restAAD;
@@ -59,7 +59,6 @@ public class ApplSelectControler {
 
 	@RequestMapping(value = "/addAppls", method = RequestMethod.POST)
 	public String addAppls(@ModelAttribute ApplForm form, Model model) {
-//		ArrayList<String> configList = form.getConfigList();
 		
 		String[] configList = form.getConfigList();
 		try {
@@ -108,9 +107,14 @@ public class ApplSelectControler {
 		return frame(model);
 	}
 
+	/**
+	 * method to create the new enlighten profile from the user settings
+	 * 
+	 * @param appl
+	 * @return
+	 */
 	private String createApplProfile(AADApplication appl) {
 		StringBuffer profile = new StringBuffer();
-		String applName = appl.getName();
 		String centralDB = appl.getAdgDatabase();
 
 		String replaceFrom = "_central";

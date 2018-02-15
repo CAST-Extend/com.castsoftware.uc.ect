@@ -27,6 +27,7 @@ public class Application {
 	 * @param args
 	 */
 	public static void main(String args[]) {
+		LOG.info("Starting application...");
 		SpringApplication.run(Application.class, args);
 	}
 
@@ -35,12 +36,12 @@ public class Application {
 	 * 
 	 * @return
 	 */
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:messages");
-		messageSource.setCacheSeconds(10); // reload messages every 10 seconds
-		return messageSource;
-	}
+//	@Bean
+//	public MessageSource messageSource() {
+//		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+//		messageSource.setBasename("classpath:messages");
+//		messageSource.setCacheSeconds(10); // reload messages every 10 seconds
+//		return messageSource;
+//	}
 
 }

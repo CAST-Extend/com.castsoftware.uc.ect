@@ -23,7 +23,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 public class HttpComponentsClientHttpRequestFactoryBasicAuth extends HttpComponentsClientHttpRequestFactory 
 {
 	private static final Logger LOG = LoggerFactory.getLogger(HttpComponentsClientHttpRequestFactoryBasicAuth.class);
-    HttpHost host;
+	private HttpHost host;
     
     /**
      * @param host

@@ -16,12 +16,12 @@ public class EnlightenProfileConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(EnlightenProfileConfig.class);
 
 	
-  	String server;
-  	String port;
-	String user;
-	String password;
-	String version;
-	String profileBaseFolder;
+  	private String server;
+  	private String port;
+  	private String user;
+  	private String password;
+  	private String version;
+  	private String profileBaseFolder;
 	
 	public String getServer() {
 		return server;

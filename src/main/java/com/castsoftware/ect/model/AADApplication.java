@@ -28,7 +28,7 @@ public class AADApplication {
 	private String adgVersion;
 	
 	@Autowired
-	AADConfig aadConfig;
+	private AADConfig aadConfig;
 
 	
 	public AADApplication()

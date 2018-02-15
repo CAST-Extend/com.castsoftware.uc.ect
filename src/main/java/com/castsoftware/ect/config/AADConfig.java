@@ -21,7 +21,6 @@ import com.castsoftware.ect.Application;
 @Configuration
 @ConfigurationProperties(prefix = "AAD")
 public class AADConfig {
-	private static final Logger LOG = LoggerFactory.getLogger(AADConfig.class);
 	
 	private String url;
 	private String userName;
