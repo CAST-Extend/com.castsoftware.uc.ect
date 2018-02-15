@@ -12,6 +12,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.castsoftware.ect.Application;
 
+/**
+ * Read aad section of the configuration file
+ * 
+ * @author NKA
+ *
+ */
 @Configuration
 @ConfigurationProperties(prefix = "AAD")
 public class AADConfig {
@@ -21,25 +27,57 @@ public class AADConfig {
 	private String userName;
 	private String password;
 	
+	/**
+	 * URL getter
+	 * @return
+	 */
 	public String getUrl() {
 		return url;
 	}
+	
+	/**
+	 * URL setter
+	 * @param url
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	/**
+	 * UserName getter
+	 * 
+	 * @return
+	 */
 	public String getUserName() {
 		return userName;
 	}
+	/**
+	 * UserName setter
+	 * 
+	 * @param userName
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	/**
+	 * Password getter
+	 * 
+	 * @return
+	 */
 	public String getPassword() {
 		return password;
 	}
+	/**
+	 * Password setter
+	 * 
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "AEDConfig [url=" + url + ", userName=" + userName + ", password=" + password + "]";

@@ -87,12 +87,16 @@ public class ApplSelectControler {
 							}
 						}
 					}
-					writer.close();
 					model.addAttribute(GOOD_MSG, "Profile written successfully!");
 
 				} catch (IOException e) {
 					model.addAttribute(ERROR_MSG, e.getMessage());
 					LOG.error("Error writing to enlighten profile file", e);
+				} finally {
+					if (writer!=null)
+					{
+						writer.close();
+					}
 				}
 			}
 		} catch (Exception e) {

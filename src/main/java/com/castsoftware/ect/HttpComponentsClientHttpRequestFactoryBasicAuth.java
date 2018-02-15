@@ -14,20 +14,35 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
+/**
+ * This class is used to implement application security 
+ * 
+ * @author NKA
+ *
+ */
 public class HttpComponentsClientHttpRequestFactoryBasicAuth extends HttpComponentsClientHttpRequestFactory 
 {
 	private static final Logger LOG = LoggerFactory.getLogger(HttpComponentsClientHttpRequestFactoryBasicAuth.class);
     HttpHost host;
     
+    /**
+     * @param host
+     */
     public HttpComponentsClientHttpRequestFactoryBasicAuth(HttpHost host) {
         super();
         this.host = host;
     }
  
+    /* (non-Javadoc)
+     * @see org.springframework.http.client.HttpComponentsClientHttpRequestFactory#createHttpContext(org.springframework.http.HttpMethod, java.net.URI)
+     */
     protected HttpContext createHttpContext(HttpMethod httpMethod, URI uri) {
         return createHttpContext();
     }
      
+    /**
+     * @return
+     */
     private HttpContext createHttpContext() {
         AuthCache authCache = new BasicAuthCache();
  
