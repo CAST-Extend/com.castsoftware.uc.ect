@@ -6,6 +6,8 @@ import javax.annotation.PostConstruct;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.Http11NioProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -28,6 +30,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	private static final Logger LOG = LoggerFactory.getLogger(WebSecurityConfig.class);
+
 	@Autowired
 	private Environment env;
 

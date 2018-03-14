@@ -1,5 +1,7 @@
 package com.castsoftware.ect.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -11,12 +13,15 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @ConfigurationProperties(prefix = "enlighten")
 public class EnlightenProfileConfig {
-  	String server;
-  	String port;
-	String user;
-	String password;
-	String version;
-	String profileBaseFolder;
+	private static final Logger LOG = LoggerFactory.getLogger(EnlightenProfileConfig.class);
+
+	
+  	private String server;
+  	private String port;
+  	private String user;
+  	private String password;
+  	private String version;
+  	private String profileBaseFolder;
 	
 	public String getServer() {
 		return server;

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -29,10 +30,10 @@ import com.castsoftware.ect.model.ApplForm;
 
 @Controller
 public class ApplSelectControler {
-	private static final Logger log = LoggerFactory.getLogger(ApplSelectControler.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ApplSelectControler.class);
 
-	private final String ERROR_MSG = "errorMsg";
-	private final String GOOD_MSG = "goodMsg";
+	private final static String ERROR_MSG = "errorMsg";
+	private final static String GOOD_MSG = "goodMsg";
 
 	@Autowired
 	private AADController restAAD;
@@ -50,7 +51,7 @@ public class ApplSelectControler {
 			form.setApplList(new ArrayList());
 			model.addAttribute(ERROR_MSG, ex.getMessage());
 		}
-		form.setConfigList(new ArrayList());
+		form.setConfigList(new String[0]);
 		model.addAttribute("formData", form);
 
 		return "frame";
@@ -58,7 +59,8 @@ public class ApplSelectControler {
 
 	@RequestMapping(value = "/addAppls", method = RequestMethod.POST)
 	public String addAppls(@ModelAttribute ApplForm form, Model model) {
-		ArrayList<String> configList = form.getConfigList();
+		
+		String[] configList = form.getConfigList();
 		try {
 			ArrayList<AADApplication> applList = applSelect();
 
@@ -84,26 +86,35 @@ public class ApplSelectControler {
 							}
 						}
 					}
-					writer.close();
 					model.addAttribute(GOOD_MSG, "Profile written successfully!");
 
 				} catch (IOException e) {
 					model.addAttribute(ERROR_MSG, e.getMessage());
-					log.error("Error writing to enlighten profile file", e);
+					LOG.error("Error writing to enlighten profile file", e);
+				} finally {
+					if (writer!=null)
+					{
+						writer.close();
+					}
 				}
 			}
 		} catch (Exception e) {
 			model.addAttribute(ERROR_MSG, e.getMessage());
 			form.setApplList(new ArrayList());
 			model.addAttribute("formData", form);
-			log.error("Error writing to enlighten profile file", e);
+			LOG.error("Error writing to enlighten profile file", e);
 		}
-		return "frame";
+		return frame(model);
 	}
 
+	/**
+	 * method to create the new enlighten profile from the user settings
+	 * 
+	 * @param appl
+	 * @return
+	 */
 	private String createApplProfile(AADApplication appl) {
 		StringBuffer profile = new StringBuffer();
-		String applName = appl.getName();
 		String centralDB = appl.getAdgDatabase();
 
 		String replaceFrom = "_central";
@@ -169,9 +180,9 @@ public class ApplSelectControler {
 			List<AADApplication> appls = restAAD.getApplications(portalName);
 
 			for (AADApplication aa : appls) {
-				if (aa.getAdgVersion().contains(version)) {
+//				if (aa.getAdgVersion().contains(version)) {
 					applList.add(aa);
-				}
+//				}
 
 				// //is the application already on the list?
 				// for (AADApplication bb: applList)
