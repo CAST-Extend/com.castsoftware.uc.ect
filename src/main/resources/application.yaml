@@ -1,7 +1,7 @@
 AAD:
   url: http://demoserver:8090/CAST-AAD/rest/
-  userName: cast
-  password: cast
+  userName: *****
+  password: *****
 
 ldap:
   domain: corp.castsoftware.com
@@ -19,10 +19,10 @@ server:
   port: 8443
   ssl:
     key-store: C:\CASTMS\keystore\keystore.jks
-    key-store-password: mdSi!4ty
-    key-password: mdSi!4ty
+    key-store-password: *****
+    key-password: *****
     trust-store: C:\CASTMS\keystore\keystore.jks
-    trust-store-password: mdSi!4ty
+    trust-store-password: *****
 
 #logging.level.org.springframework.web: DEBUG
 #logging.level.org.springframework.security: DEBUG
